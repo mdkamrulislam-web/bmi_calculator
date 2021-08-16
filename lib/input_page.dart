@@ -1,8 +1,10 @@
+import 'package:bmi_calculator/rounded_rec_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'round_icon_button.dart';
 
 enum Gender { male, female }
 
@@ -15,6 +17,8 @@ class _InputPageState extends State<InputPage> {
   //Using Ternary Operator instead of method
   Gender? selectedGender;
   int height = 180;
+  int weight = 30;
+  int age = 15;
   // Color maleCardColor = inactiveCardColor;
   // Color femaleCardColor = inactiveCardColor;
   //
@@ -133,10 +137,90 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: kActiveCardColor),
+                  child: ReusableCard(
+                    colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                  // print(weight);
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                  // print(weight);
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: kActiveCardColor),
+                  child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedRecIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedRecIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    colour: kActiveCardColor,
+                  ),
                 ),
               ],
             ),
